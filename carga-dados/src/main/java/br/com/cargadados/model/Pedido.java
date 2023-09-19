@@ -12,24 +12,24 @@ public class Pedido {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @Column(name="nome_produto", length=50, nullable=false)
-    private String produto;
+    private String name;
 
     private Integer quantidade;
 
     public Pedido() {
     }
 
-    public Pedido(String produto, Integer quantidade) {
-        this.produto = produto;
+    public Pedido(String name, Integer quantidade) {
+        this.name = name;
         this.quantidade = quantidade;
     }
 
-    public String getProduto() {
-        return produto;
+    public String getName() {
+        return name;
     }
 
-    public void setProduto(String produto) {
-        this.produto = produto;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getQuantidade() {
@@ -49,19 +49,19 @@ public class Pedido {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pedido pedido = (Pedido) o;
-        return Objects.equals(id, pedido.id) && Objects.equals(produto, pedido.produto) && Objects.equals(quantidade, pedido.quantidade);
+        return Objects.equals(id, pedido.id) && Objects.equals(name, pedido.name) && Objects.equals(quantidade, pedido.quantidade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, produto, quantidade);
+        return Objects.hash(id, name, quantidade);
     }
 
     @Override
     public String toString() {
         return "Pedido{" +
                 "id=" + id +
-                ", produto='" + produto + '\'' +
+                ", produto='" + name + '\'' +
                 ", quantidade=" + quantidade +
                 '}';
     }

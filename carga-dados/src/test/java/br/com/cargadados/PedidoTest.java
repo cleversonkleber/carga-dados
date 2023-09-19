@@ -19,27 +19,29 @@ public class PedidoTest {
     @Test
     @Rollback(false)
     public void testCreatePedido(){
-        Pedido pedidoSave = pedidoRepository.save(new Pedido("Saco",12));
+        Pedido pedidoSave = pedidoRepository.save(new Pedido("Saco1",12));
         assertThat(pedidoSave.getId()).isGreaterThan(0);
     }
 
     @Test
     public void testFindProductByName(){
         Pedido pedidoSave = pedidoRepository.save(new Pedido("Saco",12));
-        assertThat(pedidoSave.getProduto()).isEqualTo("Saco");
+        assertThat(pedidoSave.getName()).isEqualTo("Saco");
     }
 
-//    @Test
-//    public void testUpdateProduct() {
-//        Pedido product = pedidoRepository.findByName("Saco");
-//        product.setQuantidade(1000);
-//
-//        pedidoRepository.save(product);
-//
-//        Pedido updatedPedido = pedidoRepository.findByName("Saco");
-//
-//        assertThat(updatedPedido.getQuantidade()).isEqualTo(1000);
-//    }
+    @Test
+    @Rollback(false)
+    public void testUpdateProduct() {
+        pedidoRepository.save(new Pedido("Saco11",12));
+        Pedido product = pedidoRepository.findByName("Saco11");
+        product.setQuantidade(1000);
+
+        pedidoRepository.save(product);
+
+        Pedido updatedPedido = pedidoRepository.findByName("Saco11");
+
+        assertThat(updatedPedido.getQuantidade()).isEqualTo(1000);
+    }
 
 
 //https://www.codejava.net/frameworks/spring-boot/junit-tests-for-spring-data-jpa
