@@ -22,7 +22,7 @@ public class PedidoController {
     public ModelAndView index(){
 
 
-        List<Pedido> pedidos = (List<Pedido>) this.repository.findAll();
+        List<Pedido> pedidos =  this.repository.findAll();
 
         ModelAndView mv = new ModelAndView("pedidos/index");
         mv.addObject("pedidos",pedidos);
