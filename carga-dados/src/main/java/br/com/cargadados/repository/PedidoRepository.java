@@ -9,3 +9,5 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
    public Pedido findByName(String name);
 }
+
+
