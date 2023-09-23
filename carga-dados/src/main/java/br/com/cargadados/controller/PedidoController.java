@@ -4,9 +4,11 @@ package br.com.cargadados.controller;
 import br.com.cargadados.dto.RequisicaoNovoPedido;
 import br.com.cargadados.model.Pedido;
 import br.com.cargadados.repository.PedidoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,10 +43,19 @@ public class PedidoController {
     }
 
     @PostMapping("/pedidos")
-    public String create(RequisicaoNovoPedido requisicaoNovoPedido){
-        Pedido pedido = requisicaoNovoPedido.toPedido();
-        this.repository.save(pedido);
-        return "redirect:/pedidos";
+    public ModelAndView create(@Valid RequisicaoNovoPedido requisicaoNovoPedido, BindingResult result){
+        if(result.hasErrors()){
+            System.out.println("\n**************** Tem erros ****************************\n");
+            ModelAndView mv = new ModelAndView("pedidos/new");
+
+            return mv;
+
+        }else {
+
+            Pedido pedido = requisicaoNovoPedido.toPedido();
+            this.repository.save(pedido);
+            return new ModelAndView("redirect:/pedidos");
+        }
     }
 
 

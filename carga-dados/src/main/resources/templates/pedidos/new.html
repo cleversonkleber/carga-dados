@@ -12,14 +12,14 @@
 </head>
 <body>
 <div class="container mt-4">
-    <form action="/pedidos" method="POST">
+    <form th:object="${requisicaoNovoPedido}" action="/pedidos" method="POST">
         <div class="mb-3">
             <label class="form-label">Nome</label>
-            <input class="form-control" type="text" name="name" >
+            <input class="form-control" type="text" field="*{name}" >
         </div>
         <div class="mb-3">
             <label class="form-label">Quantidade</label>
-            <input class="form-control" type="text" name="quantidade" >
+            <input class="form-control" type="text" field="*{quantidade}" >
         </div>
         <button class="btn btn-promary" type="submit">Criar pedido</button>
         <a href="javascript:history.back()">Voltar</a>
